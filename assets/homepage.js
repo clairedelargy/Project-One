@@ -24,8 +24,8 @@ var formSubmitHandler = function(event) {
 
 var getPokeName = function(user) {
   // format the github api url
-  var apiUrl = 'https://api.pokemontcg.io/v2/cards';
-
+  var apiUrl = 'https://api.pokemontcg.io/v2/cards?q=name:' + nameInputEl;
+  // https://api.pokemontcg.io/v2/cards?q=name:Bulbasaur
   // make a get request to url
   fetch(apiUrl)
     .then(function(response) {
@@ -55,7 +55,7 @@ var displayPokename = function(repos, searchTerm) {
   pokeSearchName.textContent = searchTerm;
 
   // loop over repos
-  for (var i = 0; i < repos.length; i++) {
+  for (var i = 0; i < data.length; i++) {
     // format repo name
     var pokeName = [''];
 
@@ -73,6 +73,14 @@ var displayPokename = function(repos, searchTerm) {
     // create a status element
     var statusEl = document.createElement('span');
     statusEl.classList = 'flex-row align-center';
+
+    // WE NEED TO EDIT THIS TO MAKE SENSE FOR WHAT WE ARE PULLING
+    if (repos[i].open_issues_count > 0) {
+      statusEl.innerHTML =
+        "<i class='fas fa-times status-icon icon-danger'></i>" + repos[i].open_issues_count + ' issue(s)';
+    } else {
+      statusEl.innerHTML = "<i class='fas fa-check-square status-icon icon-success'></i>";
+    }
 
     // append to container
     pokeEl.appendChild(statusEl);
