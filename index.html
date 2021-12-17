@@ -1,15 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <title>test</title>
-    
-  </head>
-  <body class="bg-dark text-light">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Project One</title>
+</head>
     <div>
+      <div class="card">
+        <h3 class="card-header text-uppercase">Search By User</h3>
+        <form id="user-form" class="card-body">
+          <label class="form-label" for="pokeName">Name</label>
+          <input name="pokeName" id="pokeName" type="text" autofocus="true" class="form-input" />
+          <button type="submit" class="btn">Click</button>
+        </form>
+      </div>
     </div>
 
+    <div >
+      <h2 class="subtitle">List <span id="poke-search"></span></h2>
+      <div id="poke-container" class="list-group">
+      </div>
+    </div>
+  </main>
 
-    <script type="text/javascript" src="script.js" ></script>
-  </body>
+  <script src="homepage.js"></script>
+</body>
+
 </html>
