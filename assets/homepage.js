@@ -4,6 +4,7 @@ var pokeSearchName = document.querySelector('#poke-search');
 var username = nameInputEl.value = '';
 var imgBox = document.querySelector('#searchedImage');
 var priceList = document.querySelector('#poke-prices');
+var spriteBox = document.querySelector('#searchedSprite');
 
 var formSubmitHandler = function(event) {
   // prevent page from refreshing
