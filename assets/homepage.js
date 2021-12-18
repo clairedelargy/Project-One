@@ -1,8 +1,8 @@
 var userFormEl = document.querySelector('#user-form');
 var nameInputEl = document.querySelector('#pokeName');
-var pokeContainerE1 = document.querySelector('#poke-container');
 var pokeSearchName = document.querySelector('#poke-search');
 var username = nameInputEl.value = '';
+var imgBox = document.querySelector('#searchedImage');
 
 var formSubmitHandler = function(event) {
   // prevent page from refreshing
@@ -13,10 +13,6 @@ var formSubmitHandler = function(event) {
 
   if (username) {
     getPokeName(username);
-
-    // clear old content
-    pokeContainerE1.textContent = '';
-    nameInputEl.value = '';
   } else {
     alert('Please enter a Pokemon name!');
   }
@@ -33,6 +29,8 @@ var getPokeName = function(user) {
         console.log(response);
         response.json().then(function(data) {
           console.log(data.data[0].images);
+          let pokeCard = data.data[0].images
+          imgBox.src = pokeCard.small
         });
       } else {
         alert('Error: Pokemon was not found, please try again!' + response.statusText);

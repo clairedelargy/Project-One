@@ -8,46 +8,29 @@
   <link rel="stylesheet" href="./assets/style.css"/>
   <title>Project One</title>
 </head>
-<body class= "flex-column min-100-vh">
   <header>
     <h1>PokeValue</h1>
-    <div>
-      <div class="card">
-        <h3 class="card-header text-uppercase">Search By Pokemon</h3>
-        <form id="user-form" class="card-body">
-          <label class="form-label" for="pokeName">Name</label>
+  </header>
+  <body>
+
+    <container id="search-for-pokemon">
+        <h3>Search By Pokemon</h3>
+        <form id="user-form">
+          <label for="pokeName">Name</label>
           <input name="pokeName" id="pokeName" type="text" autofocus="true" class="form-input" />
           <button type="submit" class="btn">Click</button>
         </form>
       </div>
-    </div>
+    </container>
 
-
-    <div>
-      <h2 class="subtitle">Pokemon:<span id="poke-search"></span></h2>
-      <div id="poke-container" class="list-group">
-        <div class="container">
-          <div class="row">
-            <!-- pokemon evolution info -->
-            <div class="col-md-6" id="evolution-container">
-              <ol>
-                <li>Bulbasaur</li>
-                <li>Ivysaur</li>
-                <li>Venosaur</li>
-              </ol>
-            </div>
-            <!-- pokemon card prices -->
-            <div class="col-md-6" id="price-container">
-              <ol>
-                <li>$150</li>
-              </ol>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+    <!-- pokemon card picture -->
+    <container id="poke-results">
+      <h2 class="subtitle">Pokemon:<span id="poke-search"></span></h2> 
+            <img id="searchedImage" src="">
+    </container>
+  
     
-  </main>
+  </body>
 
   <script src="./assets/homepage.js"></script>
 </body>
