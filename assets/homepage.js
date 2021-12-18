@@ -24,15 +24,20 @@ var formSubmitHandler = function(event) {
 
 var getPokeName = function(pokemonName) {
   // format the github api url
-  var apiUrl = 'https://api.pokemontcg.io/v2/cards?q=name:' + pokemonName;
-  // https://api.pokemontcg.io/v2/cards?q=name:Bulbasaur
+
+  var apiUrl = 'https://api.pokemontcg.io/v2/cards?q=name:' + user;
+
   // make a get request to url
   fetch(apiUrl)
     .then(function(response) {
       // request was successful
       if (response.ok) {
         console.log(response);
-        return response.json()
+
+        response.json().then(function(data) {
+          console.log(data.data[0].images);
+        });
+
       } else {
       alert('Error: Pokemon was not found, please try again!' + response.statusText);
     }
@@ -46,14 +51,17 @@ var getPokeName = function(pokemonName) {
     });
 };
 
-var displayPokename = function(pokemonData, pokemonSearchedFor) {
-  // check if api returned any repos
-  if (pokemonData.length === 0) {
-    pokeContainerE1.textContent = 'No Pokemon found! Please try again!';
-    return;
-  }
-console.log(pokemonData);
-  pokeSearchName.textContent = searchTerm;
+
+// var displayPokename = function([0], searchTerm) {
+//   // check if api returned any repos
+//   if (length === 0) {
+//     pokeContainerE1.textContent = 'No Pokemon found! Please try again!';
+//     return;
+//   }
+
+//   pokeSearchName.textContent = searchTerm;
+
+
 //TO DO--- RESEARCH TEMPLATE LITERALS FOR ALL YOUR TEMPLATING NEEDS
 //   let html = `<div class="container">
 //   <div class="row">
@@ -109,7 +117,9 @@ console.log(pokemonData);
 //     // append container to the dom
 //     pokeContainerE1.appendChild(pokeEl);
 //   }
-};
+
+// };
+
 
 // add event listeners to forms
 userFormEl.addEventListener('submit', formSubmitHandler);
