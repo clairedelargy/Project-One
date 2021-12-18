@@ -22,30 +22,22 @@ var formSubmitHandler = function(event) {
   }
 };
 
-var getPokeName = function(pokemonName) {
+var getPokeName = function(user) {
   // format the github api url
-
   var apiUrl = 'https://api.pokemontcg.io/v2/cards?q=name:' + user;
-
   // make a get request to url
   fetch(apiUrl)
     .then(function(response) {
       // request was successful
       if (response.ok) {
         console.log(response);
-
         response.json().then(function(data) {
           console.log(data.data[0].images);
         });
-
       } else {
-      alert('Error: Pokemon was not found, please try again!' + response.statusText);
-    }
-  })
-  .then(function(data) {
-    console.log(data);
-    displayPokename(data, pokemonName);
-  })
+        alert('Error: Pokemon was not found, please try again!' + response.statusText);
+      }
+    })
     .catch(function(error) {
       alert('Unable to connect');
     });
