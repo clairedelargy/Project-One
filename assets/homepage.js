@@ -22,26 +22,35 @@ var formSubmitHandler = function(event) {
   }
 };
 
-var getPokeName = function(user) {
+var getPokeName = function(pokemonName) {
   // format the github api url
+
   var apiUrl = 'https://api.pokemontcg.io/v2/cards?q=name:' + user;
+
   // make a get request to url
   fetch(apiUrl)
     .then(function(response) {
       // request was successful
       if (response.ok) {
         console.log(response);
+
         response.json().then(function(data) {
           console.log(data.data[0].images);
         });
+
       } else {
-        alert('Error: Pokemon was not found, please try again!' + response.statusText);
-      }
-    })
+      alert('Error: Pokemon was not found, please try again!' + response.statusText);
+    }
+  })
+  .then(function(data) {
+    console.log(data);
+    displayPokename(data, pokemonName);
+  })
     .catch(function(error) {
       alert('Unable to connect');
     });
 };
+
 
 // var displayPokename = function([0], searchTerm) {
 //   // check if api returned any repos
@@ -52,6 +61,28 @@ var getPokeName = function(user) {
 
 //   pokeSearchName.textContent = searchTerm;
 
+
+//TO DO--- RESEARCH TEMPLATE LITERALS FOR ALL YOUR TEMPLATING NEEDS
+//   let html = `<div class="container">
+//   <div class="row">
+//     <!-- pokemon evolution info -->
+//     <div class="col-md-6" id="evolution-container">
+//       <ol>
+//         <li>${pokemonData[0].name}</li>
+//         <li>${pokemonData[1].name}</li>
+//         <li>${pokemonData[2].name}</li>
+//       </ol>
+//     </div>
+//     <!-- pokemon card prices -->
+//     <div class="col-md-6" id="price-container">
+//       <ol>
+//       ${getPokePrices(pokemonSearchedFor)}
+//         <li>$150</li>
+//       </ol>
+//     </div>
+//   </div>
+// </div>`
+// document.getElementById('poke-container').textContent = html;
 //   // loop over repos
 //   for (var i = 0; i < data.length; i++) {
 //     // format repo name
@@ -86,7 +117,9 @@ var getPokeName = function(user) {
 //     // append container to the dom
 //     pokeContainerE1.appendChild(pokeEl);
 //   }
+
 // };
+
 
 // add event listeners to forms
 userFormEl.addEventListener('submit', formSubmitHandler);
