@@ -24,8 +24,7 @@ var formSubmitHandler = function(event) {
 
 var getPokeName = function(user) {
   // format the github api url
-  var apiUrl = 'https://api.pokemontcg.io/v2/cards?q=name:' + nameInputEl;
-  // https://api.pokemontcg.io/v2/cards?q=name:Bulbasaur
+  var apiUrl = 'https://api.pokemontcg.io/v2/cards?q=name:' + user;
   // make a get request to url
   fetch(apiUrl)
     .then(function(response) {
@@ -33,8 +32,7 @@ var getPokeName = function(user) {
       if (response.ok) {
         console.log(response);
         response.json().then(function(data) {
-          console.log(data);
-          displayPokename(data, user);
+          console.log(data.data[0].images);
         });
       } else {
         alert('Error: Pokemon was not found, please try again!' + response.statusText);
@@ -45,50 +43,50 @@ var getPokeName = function(user) {
     });
 };
 
-var displayPokename = function(repos, searchTerm) {
-  // check if api returned any repos
-  if (repos.length === 0) {
-    pokeContainerE1.textContent = 'No Pokemon found! Please try again!';
-    return;
-  }
+// var displayPokename = function([0], searchTerm) {
+//   // check if api returned any repos
+//   if (length === 0) {
+//     pokeContainerE1.textContent = 'No Pokemon found! Please try again!';
+//     return;
+//   }
 
-  pokeSearchName.textContent = searchTerm;
+//   pokeSearchName.textContent = searchTerm;
 
-  // loop over repos
-  for (var i = 0; i < data.length; i++) {
-    // format repo name
-    var pokeName = [''];
+//   // loop over repos
+//   for (var i = 0; i < data.length; i++) {
+//     // format repo name
+//     var pokeName = [''];
 
-    // create a container for each repo
-    var pokeEl = document.createElement('div');
-    pokeEl.classList = 'list-item flex-row justify-space-between align-center';
+//     // create a container for each repo
+//     var pokeEl = document.createElement('div');
+//     pokeEl.classList = 'list-item flex-row justify-space-between align-center';
 
-    // create a span element to hold repository name
-    var titleEl = document.createElement('span');
-    titleEl.textContent = pokeName;
+//     // create a span element to hold repository name
+//     var titleEl = document.createElement('span');
+//     titleEl.textContent = pokeName;
 
-    // append to container
-    pokeEl.appendChild(titleEl);
+//     // append to container
+//     pokeEl.appendChild(titleEl);
 
-    // create a status element
-    var statusEl = document.createElement('span');
-    statusEl.classList = 'flex-row align-center';
+//     // create a status element
+//     var statusEl = document.createElement('span');
+//     statusEl.classList = 'flex-row align-center';
 
-    // WE NEED TO EDIT THIS TO MAKE SENSE FOR WHAT WE ARE PULLING
-    if (repos[i].open_issues_count > 0) {
-      statusEl.innerHTML =
-        "<i class='fas fa-times status-icon icon-danger'></i>" + repos[i].open_issues_count + ' issue(s)';
-    } else {
-      statusEl.innerHTML = "<i class='fas fa-check-square status-icon icon-success'></i>";
-    }
+//     // WE NEED TO EDIT THIS TO MAKE SENSE FOR WHAT WE ARE PULLING
+//     if (repos[i].open_issues_count > 0) {
+//       statusEl.innerHTML =
+//         "<i class='fas fa-times status-icon icon-danger'></i>" + repos[i].open_issues_count + ' issue(s)';
+//     } else {
+//       statusEl.innerHTML = "<i class='fas fa-check-square status-icon icon-success'></i>";
+//     }
 
-    // append to container
-    pokeEl.appendChild(statusEl);
+//     // append to container
+//     pokeEl.appendChild(statusEl);
 
-    // append container to the dom
-    pokeContainerE1.appendChild(pokeEl);
-  }
-};
+//     // append container to the dom
+//     pokeContainerE1.appendChild(pokeEl);
+//   }
+// };
 
 // add event listeners to forms
 userFormEl.addEventListener('submit', formSubmitHandler);
