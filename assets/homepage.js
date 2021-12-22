@@ -5,7 +5,7 @@ var imgBox = document.querySelector('#searchedImage');
 var priceList = document.querySelector('#poke-prices');
 var spriteBox = document.querySelector('#searchedSprite');
 
-var submitName = function(event) {
+var submitName = function (event) {
   // prevent page from refreshing
   event.preventDefault();
 
@@ -14,21 +14,22 @@ var submitName = function(event) {
 
   if (pokemonName) {
     getPokeName(pokemonName);
+
   } else {
     alert('Please enter a Pokemon name!');
   }
 };
 
-var getPokeName = function(user) {
+var getPokeName = function (user) {
   // format the github api url
   var apiUrl = 'https://api.pokemontcg.io/v2/cards?q=name:' + user;
   // make a get request to url
   fetch(apiUrl)
-    .then(function(response) {
+    .then(function (response) {
       // request was successful
       if (response.ok) {
         console.log(response);
-        response.json().then(function(data) {
+        response.json().then(function (data) {
           console.log(data.data[0].images);
           console.log(data.data[0].cardmarket.prices);
           let pokeCard = data.data[0].images;
@@ -37,17 +38,56 @@ var getPokeName = function(user) {
           imgBox.src = pokeCard.small
           pokeSearchName.textContent = pokeName
           priceList.textContent = pokePrice.averageSellPrice
+
+
+        var storedHistory = window.localStorage.getItem("history")
+        var history = []
+        if (storedHistory !== null) {
+          history = JSON.parse(storedHistory)
+        }
+        history.push(pokeName)
+        window.localStorage.setItem("history", JSON.stringify(history))
+
+        loadHistory();
+
+        //clear old content
+        pokeSearchName.textContent = '';
+        nameInputEl.value = ''
+
         });
+
       } else {
         alert('Error: Pokemon was not found, please try again!' + response.statusText);
       }
     })
-    .catch(function(error) {
+    .catch(function (error) {
       alert('Unable to connect');
     });
 };
 
-// // // This is the API call from the other website - not sure how to get both show up
+
+var loadHistory = function () {
+  var historyEl = document.getElementById("history")
+  historyEl.innerHTML = ""
+  var storedHistory = window.localStorage.getItem("history")
+  var history = []
+  if (storedHistory !== null) {
+    history = JSON.parse(storedHistory)
+  }
+  console.log(history)
+  for (var item of history) {
+    const historyButtonEl = document.createElement("button")
+    historyButtonEl.classList.add("btn")
+    historyButtonEl.classList.add("btn-block")
+    historyButtonEl.classList.add("btn-secondary")
+    historyButtonEl.innerText = item
+    historyButtonEl.setAttribute("onclick", "getPokeName('" + item + "')")
+
+    historyEl.appendChild(historyButtonEl)
+  };
+};
+// This is the API call from the other website - not sure how to get both show up
+
 // var getPokeSprite = function(user) {
 //   // format the github api url
 //   var apiUrl = 'https://pokeapi.co/api/v2/pokemon/' + user;
@@ -70,4 +110,4 @@ var getPokeName = function(user) {
 //       alert('Unable to connect');
 //     });
 //   };
-pokeForm.addEventListener('submit', submitName);
+pokeForm.addEventListener('submit', submitName)
