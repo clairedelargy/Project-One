@@ -1,12 +1,11 @@
 var pokeForm = document.querySelector('#user-form');
 var nameInput = document.querySelector('#pokeName');
 var pokeSearchName = document.querySelector('#poke-search');
-//var username = nameInput.value = '';
 var imgBox = document.querySelector('#searchedImage');
 var priceList = document.querySelector('#poke-prices');
 var spriteBox = document.querySelector('#searchedSprite');
 
-var formSubmitHandler = function(event) {
+var submitName = function(event) {
   // prevent page from refreshing
   event.preventDefault();
 
@@ -15,19 +14,7 @@ var formSubmitHandler = function(event) {
 
   if (pokemonName) {
     getPokeName(pokemonName);
-    var storedHistory=window.localStorage.getItem("history")
-      var history=[]
-      if(storedHistory !==null){
-        history.JSON.parse(storedHistory)
-      }
-      history.push(pokeName)
-      window.localStorage.setItem("history",JSON.stringify(history))
-
-      loadHistory();
-
-    //clear old content
-    pokeSearchName.textContent='';
-    nameInputEl.value=''
+    
   } else {
     alert('Please enter a Pokemon name!');
   }
@@ -52,6 +39,22 @@ var getPokeName = function(user) {
           pokeSearchName.textContent = pokeName
           priceList.textContent = pokePrice.averageSellPrice
         });
+
+
+      var storedHistory=window.localStorage.getItem("history")
+      var history=[]
+      if(storedHistory !==null){
+          history.JSON.parse(storedHistory)
+        }
+        history.push(pokeName)
+        window.localStorage.setItem("history",JSON.stringify(history))
+
+        loadHistory();
+
+        //clear old content
+        pokeSearchName.textContent='';
+        nameInputEl.value=''
+
       } else {
         alert('Error: Pokemon was not found, please try again!' + response.statusText);
       }
@@ -80,6 +83,7 @@ var loadHistory=function(){
 
       historyEl.appendChild(historyButtonEl)
   };
+    };
 // This is the API call from the other website - not sure how to get both show up
 // var getPokeSprite = function(user) {
 //   // format the github api url
@@ -103,4 +107,4 @@ var loadHistory=function(){
 //       alert('Unable to connect');
 //     });
 //   };
-pokeForm.addEventListener('submit', submitName)}
+pokeForm.addEventListener('submit', submitName)
