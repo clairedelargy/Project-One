@@ -14,10 +14,11 @@
 </head>
 
 
-<body class="flex-column min-100-vh">
   <header class="hero">
+    <img id="headerImage" src="http://i.imgur.com/oJkBNgX.jpg">
   </header>
 
+  <body class="body-content flex-column min-100-vh">
   <main class="flex-row justify-space-between">
     <div class="col-12 col-md-4">
       <div class="card"></div>
@@ -39,19 +40,24 @@
             <button type="submit" class="btn btn-block btn-danger">Submit</button>
           </form>
         </div>
-        <div class="col-9">
+        <div class="row">
+          <div class="col-4">
           <!-- pokemon card picture -->
           <h2 class="subtitle"><span id="poke-search"></span></h2>
           <div class="pokemon-card">
           <img id="searchedImage" src="https://assets.listia.com/photos/2e41eb0a6df71ee88f85/original.png?s=320x320m&sig=f8baa0b18dff1961&ts=1477203461">
           </div>
-          <!-- pokemon pokemon average card price -->
-          <div class="card-body" id="poke-prices">
           </div>
-
+          </div>
+          <!-- pokemon pokemon average card price -->
+        <div class="row">
+        <div class="col-4">
+          <h3>Value of Card:</h3>
+        <div class="card-body" id="poke-prices">
+       </div>
           <!-- pokemon sprite picture -->
           <img id="searchedSprite" src="">
-
+        </div>
         </div>
       </div>
     </div>
