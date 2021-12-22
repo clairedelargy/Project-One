@@ -1,20 +1,33 @@
 var pokeForm = document.querySelector('#user-form');
 var nameInput = document.querySelector('#pokeName');
 var pokeSearchName = document.querySelector('#poke-search');
-var username = nameInput.value = '';
+//var username = nameInput.value = '';
 var imgBox = document.querySelector('#searchedImage');
 var priceList = document.querySelector('#poke-prices');
 var spriteBox = document.querySelector('#searchedSprite');
 
-var submitName = function(event) {
+var formSubmitHandler = function(event) {
   // prevent page from refreshing
   event.preventDefault();
 
   // get value from input element
-  var pokemonname = nameInput.value.trim();
+  var pokemonName = nameInput.value.trim();
 
-  if (pokemonname) {
-    getPokeName(pokemonname);
+  if (pokemonName) {
+    getPokeName(pokemonName);
+    var storedHistory=window.localStorage.getItem("history")
+      var history=[]
+      if(storedHistory !==null){
+        history.JSON.parse(storedHistory)
+      }
+      history.push(pokeName)
+      window.localStorage.setItem("history",JSON.stringify(history))
+
+      loadHistory();
+
+    //clear old content
+    pokeSearchName.textContent='';
+    nameInputEl.value=''
   } else {
     alert('Please enter a Pokemon name!');
   }
@@ -48,6 +61,25 @@ var getPokeName = function(user) {
     });
 };
 
+var loadHistory=function(){
+  var historyEl=document.getElementById("history")
+  historyEl.innerHTML=""
+  var storedHistory=window.localStorage.getItem("history")
+  var history=[]
+  if (storedHistory !==null){
+      history=JSON.parse(storedHistory)
+  }
+  console.log(history)
+  for (var item of history)  {
+      const historyButtonEl=document.createElement("button")
+      historyButtonEl.classList.add("btn")
+      historyButtonEl.classList.add("btn-block")
+      historyButtonEl.classList.add("btn-secondary")
+      historyButtonEl.innerText=item
+      historyButtonEl.setAttribute ("onclick", "getPokeName('" + item + "')")
+
+      historyEl.appendChild(historyButtonEl)
+  };
 // This is the API call from the other website - not sure how to get both show up
 // var getPokeSprite = function(user) {
 //   // format the github api url
@@ -71,4 +103,4 @@ var getPokeName = function(user) {
 //       alert('Unable to connect');
 //     });
 //   };
-pokeForm.addEventListener('submit', submitName);
+pokeForm.addEventListener('submit', submitName)}
