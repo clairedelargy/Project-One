@@ -1,20 +1,20 @@
-var userFormEl = document.querySelector('#user-form');
-var nameInputEl = document.querySelector('#pokeName');
+var pokeForm = document.querySelector('#user-form');
+var nameInput = document.querySelector('#pokeName');
 var pokeSearchName = document.querySelector('#poke-search');
-var username = nameInputEl.value = '';
+var username = nameInput.value = '';
 var imgBox = document.querySelector('#searchedImage');
 var priceList = document.querySelector('#poke-prices');
 var spriteBox = document.querySelector('#searchedSprite');
 
-var formSubmitHandler = function(event) {
+var submitName = function(event) {
   // prevent page from refreshing
   event.preventDefault();
 
   // get value from input element
-  var username = nameInputEl.value.trim();
+  var pokemonname = nameInput.value.trim();
 
-  if (username) {
-    getPokeName(username);
+  if (pokemonname) {
+    getPokeName(pokemonname);
   } else {
     alert('Please enter a Pokemon name!');
   }
@@ -71,4 +71,4 @@ var getPokeName = function(user) {
 //       alert('Unable to connect');
 //     });
 //   };
-userFormEl.addEventListener('submit', formSubmitHandler);
+pokeForm.addEventListener('submit', submitName);
