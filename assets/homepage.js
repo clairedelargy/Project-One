@@ -16,7 +16,7 @@ var submitName = function (event) {
     getPokeName(pokemonName);
 
   } else {
-    alert('Please enter a Pokemon name!');
+    $('#myModal').modal('toggle');
   }
 };
 
@@ -57,11 +57,11 @@ var getPokeName = function (user) {
         });
 
       } else {
-        alert('Error: Pokemon was not found, please try again!' + response.statusText);
+        $('#myModal').modal('toggle');
       }
     })
     .catch(function (error) {
-      alert('Unable to connect');
+      $('#brokenModal').modal('toggle');
     });
 };
 

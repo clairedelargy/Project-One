@@ -14,11 +14,11 @@
 </head>
 
 
-  <header class="hero">
-    <img id="headerImage" src="http://i.imgur.com/oJkBNgX.jpg">
-  </header>
+<header class="hero">
+  <img id="headerImage" src="http://i.imgur.com/oJkBNgX.jpg">
+</header>
 
-  <body class="body-content flex-column min-100-vh">
+<body class="body-content flex-column min-100-vh">
   <main class="flex-row justify-space-between">
     <div class="col-12 col-md-4">
       <div class="card"></div>
@@ -43,25 +43,61 @@
         </div>
         <div class="row">
           <div class="col-4">
-          <!-- pokemon card picture -->
-          <h2 class="subtitle"><span id="poke-search"></span></h2>
-          <div class="pokemon-card">
-          <img id="searchedImage" src="https://assets.listia.com/photos/2e41eb0a6df71ee88f85/original.png?s=320x320m&sig=f8baa0b18dff1961&ts=1477203461">
+            <!-- pokemon card picture -->
+            <h2 class="subtitle"><span id="poke-search"></span></h2>
+            <div class="pokemon-card">
+              <img id="searchedImage"
+                src="https://assets.listia.com/photos/2e41eb0a6df71ee88f85/original.png?s=320x320m&sig=f8baa0b18dff1961&ts=1477203461">
+            </div>
           </div>
-          </div>
-          </div>
-          <!-- pokemon pokemon average card price -->
-        <div class="row">
-        <div class="col-4">
-          <h3>Value of Card:</h3>
-        <div class="card-body" id="poke-prices">
-          <!-- pokemon sprite picture -->
-          <img id="searchedSprite" src="">
         </div>
+        <!-- pokemon pokemon average card price -->
+        <div class="row">
+          <div class="col-4">
+            <h3>Value of Card:</h3>
+            <div class="card-body" id="poke-prices">
+              <!-- pokemon sprite picture -->
+              <img id="searchedSprite" src="">
+            </div>
+          </div>
         </div>
       </div>
-    </div>
   </main>
+  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">Error!</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          Please enter a Pokemon name!
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
+          <div class="modal fade" id="brokenModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+            aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLongTitle">Error!</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  Unable to connect!
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+              </div>
+            </div>
+          </div>
 </body>
 
 
