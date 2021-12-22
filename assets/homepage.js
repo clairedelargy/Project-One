@@ -65,6 +65,7 @@ var getPokeName = function (user) {
     });
 };
 
+
 var loadHistory = function () {
   var historyEl = document.getElementById("history")
   historyEl.innerHTML = ""
@@ -86,6 +87,7 @@ var loadHistory = function () {
   };
 };
 // This is the API call from the other website - not sure how to get both show up
+
 // var getPokeSprite = function(user) {
 //   // format the github api url
 //   var apiUrl = 'https://pokeapi.co/api/v2/pokemon/' + user;
