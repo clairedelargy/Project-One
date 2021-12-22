@@ -2,4 +2,12 @@
     width: 300px;
     height: 350px;
 }
+body{
+    flex-wrap: inherit;
+}
+img{
+    flex-direction:center;
+     margin-right: 100px;
+}
+
 
