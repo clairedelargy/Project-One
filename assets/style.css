@@ -3,3 +3,21 @@
     height: 350px;
 }
 
+#headerImage{
+    width:100%;
+    z-index: 100;
+}
+
+.body-content{
+    background-image: url("https://wallpaperaccess.com/full/1092735.png");
+    width:100%;
+    opacity: 90%;
+    z-index: -1;
+}
+
+#poke-prices{
+    font-size: 25pt;
+}
+.subtitle{
+    font-size: 40pt;
+}

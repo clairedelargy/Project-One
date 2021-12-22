@@ -1,7 +1,6 @@
 var pokeForm = document.querySelector('#user-form');
 var nameInput = document.querySelector('#pokeName');
 var pokeSearchName = document.querySelector('#poke-search');
-var username = nameInput.value = '';
 var imgBox = document.querySelector('#searchedImage');
 var priceList = document.querySelector('#poke-prices');
 var spriteBox = document.querySelector('#searchedSprite');
@@ -11,10 +10,10 @@ var submitName = function(event) {
   event.preventDefault();
 
   // get value from input element
-  var pokemonname = nameInput.value.trim();
+  var pokemonName = nameInput.value.trim();
 
-  if (pokemonname) {
-    getPokeName(pokemonname);
+  if (pokemonName) {
+    getPokeName(pokemonName);
   } else {
     alert('Please enter a Pokemon name!');
   }
@@ -48,7 +47,7 @@ var getPokeName = function(user) {
     });
 };
 
-// This is the API call from the other website - not sure how to get both show up
+// // // This is the API call from the other website - not sure how to get both show up
 // var getPokeSprite = function(user) {
 //   // format the github api url
 //   var apiUrl = 'https://pokeapi.co/api/v2/pokemon/' + user;
