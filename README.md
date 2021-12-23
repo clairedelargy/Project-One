@@ -23,12 +23,16 @@ Go to the repository and clone it to the directory that would like to have it in
 ## Contributors
 
 * Issachar Moore
-* Claire Delargy
+* Claire De Largy
 * Tiffany Sobczak
 
 ## Questions
 
 If you have any questions regarding the application contact either one of us by email...
+
+* issacharmoore@yahoo.com
+* clairedelargy@gmail.com
+* tiff.sobczak@gmail.com
 
 
 
