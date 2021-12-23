@@ -4,6 +4,7 @@ var pokeSearchName = document.querySelector('#poke-search');
 var imgBox = document.querySelector('#searchedImage');
 var priceList = document.querySelector('#poke-prices');
 var spriteBox = document.querySelector('#searchedSprite');
+var loading=document.querySelector('#loading');
 
 var submitName = function (event) {
   // prevent page from refreshing
@@ -13,20 +14,23 @@ var submitName = function (event) {
   var pokemonName = nameInput.value.trim();
 
   if (pokemonName) {
-    getPokeName(pokemonName);
-    getPokeSprite(pokemonName);
+    loadPokemon (pokemonName)
 
   } else {
     $('#myModal').modal('toggle');
   }
 };
 
-var getPokeName = function (user) {
+var getPokeCardAndValue = function (pokemonName) {
+  //shows pokedex once function is called
+  loading.classList.remove("hidden")
   // format the github api url
-  var apiUrl = 'https://api.pokemontcg.io/v2/cards?q=name:' + user;
+  var apiUrl = 'https://api.pokemontcg.io/v2/cards?q=name:' + pokemonName;
   // make a get request to url
   fetch(apiUrl)
     .then(function (response) {
+      //hides pokedex once value is loaded
+      loading.classList.add("hidden")
       // request was successful
       if (response.ok) {
         console.log(response);
@@ -38,8 +42,8 @@ var getPokeName = function (user) {
           let pokeName = data.data[0].name;
           imgBox.src = pokeCard.small
           pokeSearchName.textContent = pokeName
-          priceList.textContent = pokePrice.averageSellPrice
-
+          priceList.textContent = "$" + pokePrice.averageSellPrice
+         
 
         var storedHistory = window.localStorage.getItem("history")
         var history = []
@@ -82,16 +86,16 @@ var loadHistory = function () {
     historyButtonEl.classList.add("btn-block")
     historyButtonEl.classList.add("btn-secondary")
     historyButtonEl.innerText = item
-    historyButtonEl.setAttribute("onclick", "getPokeName('" + item + "')")
+    historyButtonEl.setAttribute("onclick", "loadPokemon('" + item + "')")
 
     historyEl.appendChild(historyButtonEl)
   };
 };
 // This is the API call from the other website - not sure how to get both show up
 
-var getPokeSprite = function(user) {
-  // format the github api url
-  var apiUrl = 'https://pokeapi.co/api/v2/pokemon/' + user;
+var getPokeSprite = function(pokemonName) {
+  // allows name to be in lowercase or uppercase
+  var apiUrl = 'https://pokeapi.co/api/v2/pokemon/' + pokemonName.toLowerCase();
   // make a get request to url
   fetch(apiUrl)
     .then(function(response) {
@@ -111,5 +115,11 @@ var getPokeSprite = function(user) {
       alert('Unable to connect');
     });
   };
+// created var to pull from both API
+var loadPokemon = function (pokemonName) {
+  getPokeCardAndValue(pokemonName);
+  getPokeSprite(pokemonName)
+}
+
 pokeForm.addEventListener('submit', submitName);
 loadHistory();
