@@ -38,7 +38,7 @@ var getPokeName = function (user) {
           let pokeName = data.data[0].name;
           imgBox.src = pokeCard.small
           pokeSearchName.textContent = pokeName
-          priceList.textContent = pokePrice.averageSellPrice
+          priceList.textContent = "$" + pokePrice.averageSellPrice
 
 
         var storedHistory = window.localStorage.getItem("history")
