@@ -22,7 +22,7 @@ Go to the repository and clone it to the directory that would like to have it in
 
 Issachar Moore
 Claire Delargy
-Tiffany S.
+Tiffany Sobczak
 
 ## Questions
 
