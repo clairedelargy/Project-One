@@ -14,6 +14,7 @@ var submitName = function (event) {
 
   if (pokemonName) {
     getPokeName(pokemonName);
+    getPokeSprite(pokemonName);
 
   } else {
     $('#myModal').modal('toggle');
@@ -88,26 +89,27 @@ var loadHistory = function () {
 };
 // This is the API call from the other website - not sure how to get both show up
 
-// var getPokeSprite = function(user) {
-//   // format the github api url
-//   var apiUrl = 'https://pokeapi.co/api/v2/pokemon/' + user;
-//   // make a get request to url
-//   fetch(apiUrl)
-//     .then(function(response) {
-//       // request was successful
-//       if (response.ok) {
-//         console.log(response);
-//         response.json().then(function(data) {
-//           console.log(data.sprites.front_default);
-//           let pokeSprite = data.sprites.front_default
-//           spriteBox.src = pokeSprite
-//         });
-//       } else {
-//         alert('Error: Pokemon was not found, please try again!' + response.statusText);
-//       }
-//     })
-//     .catch(function(error) {
-//       alert('Unable to connect');
-//     });
-//   };
-pokeForm.addEventListener('submit', submitName)
+var getPokeSprite = function(user) {
+  // format the github api url
+  var apiUrl = 'https://pokeapi.co/api/v2/pokemon/' + user;
+  // make a get request to url
+  fetch(apiUrl)
+    .then(function(response) {
+      // request was successful
+      if (response.ok) {
+        console.log(response);
+        response.json().then(function(data) {
+          console.log(data.sprites.front_default);
+          let pokeSprite = data.sprites.front_default
+          spriteBox.src = pokeSprite
+        });
+      } else {
+        alert('Error: Pokemon was not found, please try again!' + response.statusText);
+      }
+    })
+    .catch(function(error) {
+      alert('Unable to connect');
+    });
+  };
+pokeForm.addEventListener('submit', submitName);
+loadHistory();
