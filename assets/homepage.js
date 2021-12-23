@@ -4,6 +4,7 @@ var pokeSearchName = document.querySelector('#poke-search');
 var imgBox = document.querySelector('#searchedImage');
 var priceList = document.querySelector('#poke-prices');
 var spriteBox = document.querySelector('#searchedSprite');
+var loading=document.querySelector('#loading');
 
 var submitName = function (event) {
   // prevent page from refreshing
@@ -21,11 +22,13 @@ var submitName = function (event) {
 };
 
 var getPokeCardAndValue = function (pokemonName) {
+  loading.classList.remove("hidden")
   // format the github api url
   var apiUrl = 'https://api.pokemontcg.io/v2/cards?q=name:' + pokemonName;
   // make a get request to url
   fetch(apiUrl)
     .then(function (response) {
+      loading.classList.add("hidden")
       // request was successful
       if (response.ok) {
         console.log(response);
@@ -38,7 +41,7 @@ var getPokeCardAndValue = function (pokemonName) {
           imgBox.src = pokeCard.small
           pokeSearchName.textContent = pokeName
           priceList.textContent = "$" + pokePrice.averageSellPrice
-
+         
 
         var storedHistory = window.localStorage.getItem("history")
         var history = []

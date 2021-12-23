@@ -29,3 +29,11 @@ img{
 .subtitle{
     font-size: 40pt;
 }
+
+.pokedex{
+    width: 100px;
+}
+
+.hidden{
+    display: none;
+}
