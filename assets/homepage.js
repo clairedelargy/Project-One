@@ -22,12 +22,14 @@ var submitName = function (event) {
 };
 
 var getPokeCardAndValue = function (pokemonName) {
+  //shows pokedex once function is called
   loading.classList.remove("hidden")
   // format the github api url
   var apiUrl = 'https://api.pokemontcg.io/v2/cards?q=name:' + pokemonName;
   // make a get request to url
   fetch(apiUrl)
     .then(function (response) {
+      //hides pokedex once value is loaded
       loading.classList.add("hidden")
       // request was successful
       if (response.ok) {
@@ -92,7 +94,7 @@ var loadHistory = function () {
 // This is the API call from the other website - not sure how to get both show up
 
 var getPokeSprite = function(pokemonName) {
-  // format the github api url
+  // allows name to be in lowercase or uppercase
   var apiUrl = 'https://pokeapi.co/api/v2/pokemon/' + pokemonName.toLowerCase();
   // make a get request to url
   fetch(apiUrl)
@@ -113,7 +115,7 @@ var getPokeSprite = function(pokemonName) {
       alert('Unable to connect');
     });
   };
-
+// created var to pull from both API
 var loadPokemon = function (pokemonName) {
   getPokeCardAndValue(pokemonName);
   getPokeSprite(pokemonName)
