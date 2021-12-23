@@ -13,17 +13,16 @@ var submitName = function (event) {
   var pokemonName = nameInput.value.trim();
 
   if (pokemonName) {
-    getPokeName(pokemonName);
-    getPokeSprite(pokemonName);
+    loadPokemon (pokemonName)
 
   } else {
     $('#myModal').modal('toggle');
   }
 };
 
-var getPokeName = function (user) {
+var getPokeCardAndValue = function (pokemonName) {
   // format the github api url
-  var apiUrl = 'https://api.pokemontcg.io/v2/cards?q=name:' + user;
+  var apiUrl = 'https://api.pokemontcg.io/v2/cards?q=name:' + pokemonName;
   // make a get request to url
   fetch(apiUrl)
     .then(function (response) {
@@ -82,16 +81,16 @@ var loadHistory = function () {
     historyButtonEl.classList.add("btn-block")
     historyButtonEl.classList.add("btn-secondary")
     historyButtonEl.innerText = item
-    historyButtonEl.setAttribute("onclick", "getPokeName('" + item + "')")
+    historyButtonEl.setAttribute("onclick", "loadPokemon('" + item + "')")
 
     historyEl.appendChild(historyButtonEl)
   };
 };
 // This is the API call from the other website - not sure how to get both show up
 
-var getPokeSprite = function(user) {
+var getPokeSprite = function(pokemonName) {
   // format the github api url
-  var apiUrl = 'https://pokeapi.co/api/v2/pokemon/' + user;
+  var apiUrl = 'https://pokeapi.co/api/v2/pokemon/' + pokemonName.toLowerCase();
   // make a get request to url
   fetch(apiUrl)
     .then(function(response) {
@@ -111,5 +110,11 @@ var getPokeSprite = function(user) {
       alert('Unable to connect');
     });
   };
+
+var loadPokemon = function (pokemonName) {
+  getPokeCardAndValue(pokemonName);
+  getPokeSprite(pokemonName)
+}
+
 pokeForm.addEventListener('submit', submitName);
 loadHistory();
