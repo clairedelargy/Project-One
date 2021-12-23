@@ -26,7 +26,7 @@ Tiffany S.
 
 ## Questions
 
-If you ahve any questions regarding the application contact either one of us by email...
+If you have any questions regarding the application contact either one of us by email...
 
 
 
