@@ -122,7 +122,7 @@ var getPokeSprite = function(pokemonName) {
         });
         // Calls modal used if user did not enter in any information
       } else {
-        alert('Error: Pokemon was not found, please try again!' + response.statusText);
+        $('#myModal').modal('toggle');
       }
     })
     // Calls modal is server is not loading correctly
