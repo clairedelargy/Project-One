@@ -14,7 +14,9 @@
 
 ## Description
 
-A UI that allows you to search for any Pokemon and retrieve it's statistics and abilities along with the price value of the card.
+* A UI that allows you to search for any Pokemon and retrieve it's statistics and abilities along with the price value of the card.
+
+* https://clairedelargy.github.io/Project-One/
 
 ## Usage
 
