@@ -11,10 +11,8 @@ var loading=document.querySelector('#loading');
 
 // Function to catch user input
 var submitName = function (event) {
-  // prevent page from refreshing
   event.preventDefault();
 
-  // get value from input element
   var pokemonName = nameInput.value.trim();
 
   if (pokemonName) {
@@ -30,25 +28,22 @@ var submitName = function (event) {
 var getPokeCardAndValue = function (pokemonName) {
   //shows pokedex once function is called
   loading.classList.remove("hidden")
-  // format the github api url
   var apiUrl = 'https://api.pokemontcg.io/v2/cards?q=name:' + pokemonName;
-  // make a get request to url
   fetch(apiUrl)
     .then(function (response) {
       //hides pokedex once value is loaded
       loading.classList.add("hidden")
-      // request was successful
       if (response.ok) {
         console.log(response);
         response.json().then(function (data) {
           // Chooses first pokemone in array of search pokemon name, narrows down the specific information we want to use (image, price)
           console.log(data.data[0].images);
           console.log(data.data[0].cardmarket.prices);
-          // Assigns these items to variables
+          // Assigns items to variables
           let pokeCard = data.data[0].images;
           let pokePrice = data.data[0].cardmarket.prices;
           let pokeName = data.data[0].name;
-          // Displays these variables on the webpage
+          // Displays variables on the webpage
           imgBox.src = pokeCard.small
           pokeSearchName.textContent = pokeName
           priceList.textContent = "$" + pokePrice.averageSellPrice
@@ -102,22 +97,18 @@ var loadHistory = function () {
   };
 };
 
-// Second API call - shows pokemon sprite image for a more pleasing view for user
+// Second API call 
 var getPokeSprite = function(pokemonName) {
   // allows name to be in lowercase or uppercase
   var apiUrl = 'https://pokeapi.co/api/v2/pokemon/' + pokemonName.toLowerCase();
-  // make a get request to url
   fetch(apiUrl)
     .then(function(response) {
-      // request was successful
       if (response.ok) {
         console.log(response);
         response.json().then(function(data) {
           // Chooses just the sprite image data from server
           console.log(data.sprites.front_default);
-          // Assigns this data to a variable
           let pokeSprite = data.sprites.front_default
-          // Displays variable on webpage
           spriteBox.src = pokeSprite
         });
         // Calls modal used if user did not enter in any information
